@@ -5,20 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6be43a6f-ffd0-445d-a1d2-e8a135592c6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_21_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mysql_mysql_connector_j_8_0_33.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_5_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_2_0_0_alpha1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/ConnectionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/BusinessRuleException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mybank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/MyBankApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/MyBankApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mybank/MyBankApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mybank/MyBankApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mybank/domain/account/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mybank/domain/account/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mybank/domain/account/AccountDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mybank/domain/account/AccountDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mybank/domain/account/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mybank/domain/account/AccountService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +44,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/tiago/IdeaProjects/mybank"
+    "last_opened_file_path": "C:/Users/tiago/IdeaProjects/mybank",
+    "settings.editor.selected.configurable": "editor.preferences.folding"
   }
 }]]></component>
   <component name="RecentsManager">

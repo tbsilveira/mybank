@@ -1,10 +1,11 @@
 package com.mybank;
 
+import com.mybank.domain.BusinessRuleException;
 import com.mybank.domain.account.AccountDataRegister;
 import com.mybank.domain.account.AccountService;
 import com.mybank.domain.client.ClientDataRegister;
 
-import java.util.Random;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MyBankApplication {
@@ -18,19 +19,31 @@ public class MyBankApplication {
         var option = showMenu();
 
         while (option != 9) {
-            switch (option) {
-                case 1:
-                    createAccount();
-                    break;
-                case 9:
-                    break;
+            try {
+                switch (option) {
+                    case 1:
+                        createAccount();
+                        break;
+                    case 2:
+                        getAccountByNumber();
+                        break;
+                    case 9:
+                        break;
 
+                }
+            } catch (BusinessRuleException e) {
+                System.out.println(e.getMessage());
+                System.out.println("\nPress ENTER to return to main menu");
+                input.next();
             }
+
             option = showMenu();
         }
         System.out.println("Closing application...");
 
     }
+
+
 
     private static int showMenu() {
         System.out.println("""
@@ -63,7 +76,7 @@ public class MyBankApplication {
 
         service.createAccount(new AccountDataRegister(number, new ClientDataRegister(name, taxNumber, email)));
 
-        System.out.println("# Account created #");
+        System.out.println("\n# Account created #");
         System.out.println("Account Number: " + number +
                 "\nName: " + name +
                 "\nTax Number: " + taxNumber +
@@ -72,4 +85,24 @@ public class MyBankApplication {
         input.next();
 
     }
+
+    private static void getAccountByNumber() {
+
+        System.out.println("""
+                *** List one specific account ***
+                -> Inform the account number:""");
+        var number = input.nextInt();
+        var account = service.getAccountByNumber(number);
+
+        System.out.println(
+                "\nAccount Number: " + account.getNumber() +
+                "\nName: " + account.getAccountHolder().getName() +
+                "\nTax Number: " + account.getAccountHolder().getTaxNumber() +
+                "\nE-mail: " + account.getAccountHolder().getEmail() +
+                "\nBalance: " + account.getBalance());
+
+        System.out.println("\nPress ENTER to return to main menu");
+        input.next();
+    }
+
 }
