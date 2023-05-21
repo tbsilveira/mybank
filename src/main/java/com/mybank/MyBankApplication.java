@@ -1,12 +1,15 @@
 package com.mybank;
 
+import com.mybank.domain.account.AccountDataRegister;
 import com.mybank.domain.account.AccountService;
+import com.mybank.domain.client.ClientDataRegister;
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class MyBankApplication {
 
+    private static AccountService service = new AccountService();
     private static Scanner input = new Scanner(System.in).useDelimiter("\n");
 
     public static void main(String[] args) {
@@ -48,19 +51,17 @@ public class MyBankApplication {
         return input.nextInt();
     }
 
-    private static int createNumber() {
-        Random number = new Random()
-    }
-
     private static void createAccount() {
-        System.out.println("Inform the account number:");
+        System.out.println("Inform the Account Number:");
         var number = input.nextInt();
         System.out.println("Inform the NAME of the account holder:");
         var name = input.next();
         System.out.println("Inform the TAX NUMBER of the account holder:");
-        var taxNumber = input.nextInt();
+        var taxNumber = input.next();
         System.out.println("Inform the EMAIL of the account holder:");
         var email = input.next();
+
+        service.createAccount(new AccountDataRegister(number, new ClientDataRegister(name, taxNumber, email)));
 
         System.out.println("# Account created #");
         System.out.println("Account Number: " + number +

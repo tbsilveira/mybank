@@ -5,23 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6be43a6f-ffd0-445d-a1d2-e8a135592c6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybank.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/MyBankApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountDataRegister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/client/ClientDataRegister.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_21_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mysql_mysql_connector_j_8_0_33.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_5_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_2_0_0_alpha1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mybank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/MyBankApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/MyBankApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mybank/MyBankApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mybank/MyBankApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mybank/domain/account/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mybank/domain/account/Account.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +49,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/tiago/IdeaProjects/mybank"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -63,6 +61,25 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.mybank" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MyBankApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <envs>
+        <env name="userMySql" value="root" />
+        <env name="passwordMySql" value="root" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="com.mybank.MyBankApplication" />
+      <module name="mybank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mybank.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

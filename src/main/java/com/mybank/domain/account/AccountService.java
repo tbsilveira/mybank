@@ -1,9 +1,20 @@
 package com.mybank.domain.account;
 
+import com.mybank.ConnectionFactory;
+
+import java.sql.Connection;
+
 public class AccountService {
 
-    public void createAccount(){
-        System.out.println("Testando programa...");
+    private ConnectionFactory connectionFactory;
+
+    public AccountService() {
+        this.connectionFactory = new ConnectionFactory();
+    }
+
+    public void createAccount(AccountDataRegister dataRegister){
+        Connection conn = connectionFactory.getConnection();
+        new AccountDAO(conn).create(dataRegister);
     }
 
 }

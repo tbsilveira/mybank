@@ -6,17 +6,30 @@ import java.math.BigDecimal;
 
 public class Account {
     private Integer number;
-    private BigDecimal balance;
     private Client accountHolder;
+    private BigDecimal balance;
 
-    public Account(Integer number, BigDecimal balance, Client accountHolder){
+
+    public Account(Integer number, Client accountHolder, BigDecimal balance) {
         this.number = number;
-        this.balance = balance;
         this.accountHolder = accountHolder;
+        this.balance = balance;
     }
+
 
     public boolean hasFund() {
         return this.balance.compareTo(BigDecimal.ZERO) != 0;
     }
 
+    public Integer getNumber() {
+        return number;
+    }
+
+    public Client getAccountHolder() {
+        return accountHolder;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
 }
