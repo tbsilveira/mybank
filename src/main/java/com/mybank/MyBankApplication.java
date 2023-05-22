@@ -5,6 +5,7 @@ import com.mybank.domain.account.AccountDataRegister;
 import com.mybank.domain.account.AccountService;
 import com.mybank.domain.client.ClientDataRegister;
 
+import java.math.BigDecimal;
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
@@ -29,6 +30,9 @@ public class MyBankApplication {
                         break;
                     case 3:
                         getAllAccounts();
+                        break;
+                    case 4:
+                        deposit();
                         break;
                     case 9:
                         break;
@@ -104,10 +108,25 @@ public class MyBankApplication {
     private static void getAllAccounts() {
         System.out.println("Accounts list:");
         var accounts = service.getAllAccounts();
-        accounts.stream().forEach(System.out::println);
+        accounts.forEach(System.out::println);
 
         System.out.println("\nPress ENTER to return to main menu");
         input.next();
     }
+
+    private static void deposit() {
+        System.out.println("Inform the account for deposit:");
+        Integer numberAccount = input.nextInt();
+        System.out.println("Inform the amount for deposit:");
+        BigDecimal depositValue = input.nextBigDecimal();
+
+        service.deposit(numberAccount, depositValue);
+
+        System.out.println("\nDeposit made successfully!");
+        System.out.println("\nPress ENTER to return to main menu");
+        input.next();
+
+    }
+
 
 }

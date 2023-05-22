@@ -102,6 +102,23 @@ public class AccountDAO {
         }
         return accounts;
     }
+
+    public void changeBalance(Integer number, BigDecimal value) {
+        PreparedStatement ps;
+        String sql = "UPDATE accounts SET balance = ? WHERE account_number = ?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setBigDecimal(1, value);
+            ps.setInt(2, number);
+            ps.execute();
+            ps.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
 
 

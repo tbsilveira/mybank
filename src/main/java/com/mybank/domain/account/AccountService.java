@@ -3,6 +3,7 @@ package com.mybank.domain.account;
 import com.mybank.ConnectionFactory;
 import com.mybank.domain.BusinessRuleException;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,5 +37,19 @@ public class AccountService {
     public Set<Account> getAllAccounts() {
         Connection conn = connectionFactory.getConnection();
         return new AccountDAO(conn).getAllAccounts();
+    }
+
+    public void deposit(Integer number, BigDecimal value){
+        var account = getAccountByNumber(number);
+        if(value.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new BusinessRuleException("The amount need to be more than EUR 0,00");
+        }
+        BigDecimal newBalance = account.getBalance().add(value);
+        changeBalance(account, newBalance);
+    }
+
+    private void changeBalance(Account account, BigDecimal value) {
+        Connection conn = connectionFactory.getConnection();
+        new AccountDAO(conn).changeBalance(account.getNumber(), value);
     }
 }
