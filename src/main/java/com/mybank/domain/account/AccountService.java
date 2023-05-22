@@ -4,6 +4,8 @@ import com.mybank.ConnectionFactory;
 import com.mybank.domain.BusinessRuleException;
 
 import java.sql.Connection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AccountService {
 
@@ -27,5 +29,12 @@ public class AccountService {
         } else {
             throw new BusinessRuleException("Error: Account number not found!");
         }
+    }
+
+    private Set<Account> accounts = new HashSet<>();
+
+    public Set<Account> getAllAccounts() {
+        Connection conn = connectionFactory.getConnection();
+        return new AccountDAO(conn).getAllAccounts();
     }
 }

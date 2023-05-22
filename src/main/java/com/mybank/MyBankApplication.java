@@ -27,23 +27,21 @@ public class MyBankApplication {
                     case 2:
                         getAccountByNumber();
                         break;
+                    case 3:
+                        getAllAccounts();
+                        break;
                     case 9:
                         break;
-
                 }
             } catch (BusinessRuleException e) {
                 System.out.println(e.getMessage());
                 System.out.println("\nPress ENTER to return to main menu");
                 input.next();
             }
-
             option = showMenu();
         }
         System.out.println("Closing application...");
-
     }
-
-
 
     private static int showMenu() {
         System.out.println("""
@@ -83,15 +81,14 @@ public class MyBankApplication {
                 "\nEmail: " + email);
         System.out.println("\nPress ENTER to return to main menu");
         input.next();
-
     }
 
     private static void getAccountByNumber() {
-
         System.out.println("""
                 *** List one specific account ***
                 -> Inform the account number:""");
         var number = input.nextInt();
+
         var account = service.getAccountByNumber(number);
 
         System.out.println(
@@ -100,6 +97,14 @@ public class MyBankApplication {
                 "\nTax Number: " + account.getAccountHolder().getTaxNumber() +
                 "\nE-mail: " + account.getAccountHolder().getEmail() +
                 "\nBalance: " + account.getBalance());
+        System.out.println("\nPress ENTER to return to main menu");
+        input.next();
+    }
+
+    private static void getAllAccounts() {
+        System.out.println("Accounts list:");
+        var accounts = service.getAllAccounts();
+        accounts.stream().forEach(System.out::println);
 
         System.out.println("\nPress ENTER to return to main menu");
         input.next();

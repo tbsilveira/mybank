@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AccountDAO {
 
@@ -52,11 +54,11 @@ public class AccountDAO {
             while (rs.next()) {
                 Integer numberAccount = rs.getInt(1);
                 String name = rs.getString(2);
-                String tax_number = rs.getString(3);
+                String taxNumber = rs.getString(3);
                 String email = rs.getString(4);
                 BigDecimal balance = rs.getBigDecimal(5);
 
-                ClientDataRegister clientData = new ClientDataRegister(name, tax_number, email);
+                ClientDataRegister clientData = new ClientDataRegister(name, taxNumber, email);
                 Client client = new Client(clientData);
                 account = new Account(numberAccount, client, balance);
             }
@@ -69,4 +71,37 @@ public class AccountDAO {
         }
         return account;
     }
+
+    public Set<Account> getAllAccounts() {
+        PreparedStatement ps;
+        ResultSet rs;
+        Set<Account> accounts = new HashSet<>();
+        String sql = "SELECT * FROM accounts";
+
+        try {
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Integer numberAccount = rs.getInt(1);
+                String name = rs.getString(2);
+                String taxNumber = rs.getString(3);
+                String email = rs.getString(4);
+                BigDecimal balance = rs.getBigDecimal(5);
+
+                ClientDataRegister clientData = new ClientDataRegister(name, taxNumber, email);
+                Client client = new Client(clientData);
+
+                accounts.add(new Account(numberAccount, client, balance));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return accounts;
+    }
 }
+
+

@@ -32,4 +32,12 @@ public class Account {
     public BigDecimal getBalance() {
         return balance;
     }
+
+    @Override
+    public String toString() {
+        return "Account: ( " +
+                "Number: " + number +
+                ", Name: " + accountHolder.getName() +
+                ", Balance: EUR " + balance + " )";
+    }
 }
