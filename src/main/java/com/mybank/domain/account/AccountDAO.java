@@ -4,10 +4,7 @@ import com.mybank.domain.client.Client;
 import com.mybank.domain.client.ClientDataRegister;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,8 +33,13 @@ public class AccountDAO {
             ps.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
-
     }
 
     public Account getAccountByNumber(int number) {
@@ -62,10 +64,24 @@ public class AccountDAO {
                 Client client = new Client(clientData);
                 account = new Account(numberAccount, client, balance);
             }
-            rs.close();
             ps.close();
-            conn.close();
+            rs.close();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        try {
+            if(conn.isClosed()){
+                System.out.println("ONE ACCOUNT is CLOSED");
+            } else {
+                System.out.println("ONE ACCOUNT is OPEN");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -94,9 +110,23 @@ public class AccountDAO {
 
                 accounts.add(new Account(numberAccount, client, balance));
             }
-            rs.close();
             ps.close();
-            conn.close();
+            rs.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        try {
+            if(conn.isClosed()){
+                System.out.println("ALL ACCOUNTS is CLOSED");
+            } else {
+                System.out.println("ALL ACCOUNTS is OPEN");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -106,13 +136,28 @@ public class AccountDAO {
     public void changeBalance(Integer number, BigDecimal value) {
         PreparedStatement ps;
         String sql = "UPDATE accounts SET balance = ? WHERE account_number = ?";
+
         try {
             ps = conn.prepareStatement(sql);
             ps.setBigDecimal(1, value);
             ps.setInt(2, number);
             ps.execute();
             ps.close();
-            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        try {
+            if(conn.isClosed()){
+                System.out.println("CHANGE IS CLOSED");
+            } else {
+                System.out.println("CHANGE IS OPEN");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

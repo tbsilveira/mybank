@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6be43a6f-ffd0-445d-a1d2-e8a135592c6c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/ConnectionFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/MyBankApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/MyBankApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mybank/domain/account/AccountService.java" afterDir="false" />
@@ -40,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/tiago/IdeaProjects/jdbc-bytebank",
+    "last_opened_file_path": "C:/Users/tiago/IdeaProjects/mybank",
     "settings.editor.selected.configurable": "editor.preferences.folding"
   }
 }]]></component>

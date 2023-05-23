@@ -5,6 +5,7 @@ import com.mybank.domain.BusinessRuleException;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,8 +49,23 @@ public class AccountService {
         changeBalance(account, newBalance);
     }
 
+    public void withdraw(Integer numberAccount, BigDecimal withdrawValue) {
+        var account = getAccountByNumber(numberAccount);
+        if(account.getBalance().compareTo(withdrawValue) < 0){
+            throw new BusinessRuleException("There is no balance available for this withdraw");
+        }
+        BigDecimal newBalance = account.getBalance().subtract(withdrawValue);
+        changeBalance(account, newBalance);
+    }
+
+    public void transfer(Integer senderAccount, Integer recipientAccount, BigDecimal transferValue) {
+        this.withdraw(senderAccount, transferValue);
+        this.deposit(recipientAccount, transferValue);
+    }
+
     private void changeBalance(Account account, BigDecimal value) {
         Connection conn = connectionFactory.getConnection();
         new AccountDAO(conn).changeBalance(account.getNumber(), value);
     }
+
 }

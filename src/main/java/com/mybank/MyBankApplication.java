@@ -34,6 +34,12 @@ public class MyBankApplication {
                     case 4:
                         deposit();
                         break;
+                    case 5:
+                        withdraw();
+                        break;
+                    case 6:
+                        transfer();
+                        break;
                     case 9:
                         break;
                 }
@@ -46,6 +52,7 @@ public class MyBankApplication {
         }
         System.out.println("Closing application...");
     }
+
 
     private static int showMenu() {
         System.out.println("""
@@ -108,6 +115,7 @@ public class MyBankApplication {
     private static void getAllAccounts() {
         System.out.println("Accounts list:");
         var accounts = service.getAllAccounts();
+
         accounts.forEach(System.out::println);
 
         System.out.println("\nPress ENTER to return to main menu");
@@ -123,6 +131,34 @@ public class MyBankApplication {
         service.deposit(numberAccount, depositValue);
 
         System.out.println("\nDeposit made successfully!");
+        System.out.println("\nPress ENTER to return to main menu");
+        input.next();
+    }
+
+    private static void withdraw() {
+        System.out.println("Inform the account for withdraw:");
+        Integer numberAccount = input.nextInt();
+        System.out.println("Inform the amount for withdraw:");
+        BigDecimal withdrawValue = input.nextBigDecimal();
+
+        service.withdraw(numberAccount, withdrawValue);
+
+        System.out.println("\nWithdraw made successfully!");
+        System.out.println("\nPress ENTER to return to main menu");
+        input.next();
+    }
+
+    private static void transfer() {
+        System.out.println("Inform the sender account:");
+        Integer senderAccount = input.nextInt();
+        System.out.println("Inform the recipient account:");
+        Integer recipientAccount = input.nextInt();
+        System.out.println("Inform the amount for transfer:");
+        BigDecimal transferValue = input.nextBigDecimal();
+
+        service.transfer(senderAccount, recipientAccount, transferValue);
+
+        System.out.println("\nTransfer made successfully!");
         System.out.println("\nPress ENTER to return to main menu");
         input.next();
 
