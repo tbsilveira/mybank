@@ -8,12 +8,14 @@ public class Account {
     private Integer number;
     private Client accountHolder;
     private BigDecimal balance;
+    private boolean isActive;
 
 
-    public Account(Integer number, Client accountHolder, BigDecimal balance) {
+    public Account(Integer number, Client accountHolder, BigDecimal balance, boolean isActive) {
         this.number = number;
         this.accountHolder = accountHolder;
         this.balance = balance;
+        this.isActive = isActive;
     }
 
 
@@ -31,6 +33,10 @@ public class Account {
 
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     @Override

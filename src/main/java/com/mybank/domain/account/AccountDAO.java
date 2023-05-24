@@ -18,9 +18,9 @@ public class AccountDAO {
 
     public void create(AccountDataRegister accountData) {
         var client = new Client(accountData.clientData());
-        var account = new Account(accountData.number(), client, BigDecimal.ZERO);
+        var account = new Account(accountData.number(), client, BigDecimal.ZERO, true);
 
-        String sql = "INSERT INTO accounts (account_number, name, tax_number, email, balance) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO accounts (account_number, name, tax_number, email, balance, is_active) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -29,6 +29,7 @@ public class AccountDAO {
             ps.setString(3, accountData.clientData().taxNumber());
             ps.setString(4, accountData.clientData().email());
             ps.setBigDecimal(5, BigDecimal.ZERO);
+            ps.setBoolean(6, true);
             ps.execute();
             ps.close();
         } catch (SQLException e) {
@@ -40,13 +41,14 @@ public class AccountDAO {
                 throw new RuntimeException(e);
             }
         }
+        connTest();
     }
 
     public Account getAccountByNumber(int number) {
         PreparedStatement ps;
         ResultSet rs;
         Account account = null;
-        String sql = "SELECT * FROM accounts WHERE account_number = ?";
+        String sql = "SELECT * FROM accounts WHERE account_number = ? and is_active = true";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -59,10 +61,11 @@ public class AccountDAO {
                 String taxNumber = rs.getString(3);
                 String email = rs.getString(4);
                 BigDecimal balance = rs.getBigDecimal(5);
+                Boolean isActive = rs.getBoolean(6);
 
                 ClientDataRegister clientData = new ClientDataRegister(name, taxNumber, email);
                 Client client = new Client(clientData);
-                account = new Account(numberAccount, client, balance);
+                account = new Account(numberAccount, client, balance, isActive );
             }
             ps.close();
             rs.close();
@@ -76,15 +79,7 @@ public class AccountDAO {
                 throw new RuntimeException(e);
             }
         }
-        try {
-            if(conn.isClosed()){
-                System.out.println("ONE ACCOUNT is CLOSED");
-            } else {
-                System.out.println("ONE ACCOUNT is OPEN");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        connTest();
         return account;
     }
 
@@ -92,7 +87,7 @@ public class AccountDAO {
         PreparedStatement ps;
         ResultSet rs;
         Set<Account> accounts = new HashSet<>();
-        String sql = "SELECT * FROM accounts";
+        String sql = "SELECT * FROM accounts WHERE is_active = true";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -104,11 +99,12 @@ public class AccountDAO {
                 String taxNumber = rs.getString(3);
                 String email = rs.getString(4);
                 BigDecimal balance = rs.getBigDecimal(5);
+                Boolean isActive = rs.getBoolean(6);
 
                 ClientDataRegister clientData = new ClientDataRegister(name, taxNumber, email);
                 Client client = new Client(clientData);
 
-                accounts.add(new Account(numberAccount, client, balance));
+                accounts.add(new Account(numberAccount, client, balance, isActive));
             }
             ps.close();
             rs.close();
@@ -121,15 +117,7 @@ public class AccountDAO {
                 throw new RuntimeException(e);
             }
         }
-        try {
-            if(conn.isClosed()){
-                System.out.println("ALL ACCOUNTS is CLOSED");
-            } else {
-                System.out.println("ALL ACCOUNTS is OPEN");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        connTest();
         return accounts;
     }
 
@@ -152,17 +140,34 @@ public class AccountDAO {
                 throw new RuntimeException(e);
             }
         }
+        connTest();
+    }
+
+    public void delete(Integer number) {
+        PreparedStatement ps;
+        String sql = "UPDATE accounts SET is_active = false WHERE account_number = ?";
         try {
-            if(conn.isClosed()){
-                System.out.println("CHANGE IS CLOSED");
-            } else {
-                System.out.println("CHANGE IS OPEN");
-            }
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, number);
+            ps.execute();
+            ps.close();
+            conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
+    private void connTest(){
+        try {
+            if(conn.isClosed()){
+                System.out.println("CONN IS CLOSED");
+            } else {
+                System.out.println("CONN IS OPEN");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 

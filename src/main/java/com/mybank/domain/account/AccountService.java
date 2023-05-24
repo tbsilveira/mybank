@@ -5,7 +5,6 @@ import com.mybank.domain.BusinessRuleException;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,6 +44,9 @@ public class AccountService {
         if(value.compareTo(BigDecimal.ZERO) <= 0) {
             throw new BusinessRuleException("The amount need to be more than EUR 0,00");
         }
+        if(!account.isActive()) {
+            throw new BusinessRuleException("Account is inactive");
+        }
         BigDecimal newBalance = account.getBalance().add(value);
         changeBalance(account, newBalance);
     }
@@ -53,6 +55,9 @@ public class AccountService {
         var account = getAccountByNumber(numberAccount);
         if(account.getBalance().compareTo(withdrawValue) < 0){
             throw new BusinessRuleException("There is no balance available for this withdraw");
+        }
+        if(!account.isActive()) {
+            throw new BusinessRuleException("Account is inactive");
         }
         BigDecimal newBalance = account.getBalance().subtract(withdrawValue);
         changeBalance(account, newBalance);
@@ -63,9 +68,24 @@ public class AccountService {
         this.deposit(recipientAccount, transferValue);
     }
 
+    public void showBalance(Integer number) {
+        var account = getAccountByNumber(number);
+        var balance =  account.getBalance();
+        var name = account.getAccountHolder().getName();
+        System.out.println("Client: " + name + ", Balance: EUR " + balance);
+    }
+
     private void changeBalance(Account account, BigDecimal value) {
         Connection conn = connectionFactory.getConnection();
         new AccountDAO(conn).changeBalance(account.getNumber(), value);
     }
 
+    public void closeAccount(Integer number) {
+        var account = getAccountByNumber(number);
+        if(account.getBalance().compareTo(BigDecimal.ZERO) > 0) {
+            throw new BusinessRuleException("Cannot close the account, there is positive balance on it");
+        }
+        Connection conn = connectionFactory.getConnection();
+        new AccountDAO(conn).delete(number);
+    }
 }

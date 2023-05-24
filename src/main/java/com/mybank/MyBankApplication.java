@@ -40,6 +40,12 @@ public class MyBankApplication {
                     case 6:
                         transfer();
                         break;
+                    case 7:
+                        showBalance();
+                        break;
+                    case 8:
+                        closeAccount();
+                        break;
                     case 9:
                         break;
                 }
@@ -74,13 +80,15 @@ public class MyBankApplication {
     }
 
     private static void createAccount() {
-        System.out.println("Inform the Account Number:");
+        System.out.println("""
+                Option 1: CREATE ACCOUNT
+                -> Inform the account number:""");
         var number = input.nextInt();
-        System.out.println("Inform the NAME of the account holder:");
+        System.out.println("-> Inform the NAME of the account holder:");
         var name = input.next();
-        System.out.println("Inform the TAX NUMBER of the account holder:");
+        System.out.println("-> Inform the TAX NUMBER of the account holder:");
         var taxNumber = input.next();
-        System.out.println("Inform the EMAIL of the account holder:");
+        System.out.println("-> Inform the EMAIL of the account holder:");
         var email = input.next();
 
         service.createAccount(new AccountDataRegister(number, new ClientDataRegister(name, taxNumber, email)));
@@ -96,7 +104,7 @@ public class MyBankApplication {
 
     private static void getAccountByNumber() {
         System.out.println("""
-                *** List one specific account ***
+                Option 2: LIST ONE ACCOUNT
                 -> Inform the account number:""");
         var number = input.nextInt();
 
@@ -113,7 +121,9 @@ public class MyBankApplication {
     }
 
     private static void getAllAccounts() {
-        System.out.println("Accounts list:");
+        System.out.println("""
+                Option 3: LIST ALL ACCOUNTS
+                -> List of active accounts: """);
         var accounts = service.getAllAccounts();
 
         accounts.forEach(System.out::println);
@@ -123,9 +133,11 @@ public class MyBankApplication {
     }
 
     private static void deposit() {
-        System.out.println("Inform the account for deposit:");
+        System.out.println("""
+                Option 4: DEPOSIT
+                -> Inform the account number: """);
         Integer numberAccount = input.nextInt();
-        System.out.println("Inform the amount for deposit:");
+        System.out.println("-> Inform the amount for deposit:");
         BigDecimal depositValue = input.nextBigDecimal();
 
         service.deposit(numberAccount, depositValue);
@@ -136,9 +148,11 @@ public class MyBankApplication {
     }
 
     private static void withdraw() {
-        System.out.println("Inform the account for withdraw:");
+        System.out.println("""
+                Option 5: WITHDRAW
+                -> Inform the account number: """);
         Integer numberAccount = input.nextInt();
-        System.out.println("Inform the amount for withdraw:");
+        System.out.println("-> Inform the amount for withdraw:");
         BigDecimal withdrawValue = input.nextBigDecimal();
 
         service.withdraw(numberAccount, withdrawValue);
@@ -149,16 +163,44 @@ public class MyBankApplication {
     }
 
     private static void transfer() {
-        System.out.println("Inform the sender account:");
+        System.out.println("""
+                Option 6: TRANSFER
+                -> Inform the sender account: """);
         Integer senderAccount = input.nextInt();
-        System.out.println("Inform the recipient account:");
+        System.out.println("-> Inform the recipient account:");
         Integer recipientAccount = input.nextInt();
-        System.out.println("Inform the amount for transfer:");
+        System.out.println("-> Inform the amount for transfer:");
         BigDecimal transferValue = input.nextBigDecimal();
 
         service.transfer(senderAccount, recipientAccount, transferValue);
 
         System.out.println("\nTransfer made successfully!");
+        System.out.println("\nPress ENTER to return to main menu");
+        input.next();
+    }
+
+    private static void showBalance() {
+        System.out.println("""
+                Option 7: SHOW BALANCE
+                -> Inform the account number: """);
+        Integer number = input.nextInt();
+
+        service.showBalance(number);
+
+        System.out.println("\nSuccessful balance check!");
+        System.out.println("\nPress ENTER to return to main menu");
+        input.next();
+    }
+
+    private static void closeAccount() {
+        System.out.println("""
+                Option 8: CLOSE ACCOUNT
+                -> Inform the account number:""");
+        Integer number = input.nextInt();
+
+        service.closeAccount(number);
+
+        System.out.println("\nAccount closed successfully!");
         System.out.println("\nPress ENTER to return to main menu");
         input.next();
 
